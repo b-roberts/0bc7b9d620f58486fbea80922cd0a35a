@@ -1,23 +1,26 @@
-<div class="card" style="width: 20rem;">
-<img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
-  <div class="card-block">
-    <h4 class="card-title">{{$schematic->title}}</h4>
-    <p class="card-text">{{$schematic->description}}</p>
-
-    <a href="{{route('schematic.show',$schematic->id)}}" class="btn btn-primary">Go somewhere</a>
+<div class="card">
+  <a href="{{route('schematic.show',$schematic->id)}}" class="text-dark" >
+    <div style="height:150px;">
+    @if ($schematic->images->count())
+      <img class="d-block m-auto" style="height:150px;" src="{{asset('\images\\'.$schematic->images->first()->filename)}}" alt="{{$schematic->title}}">
+    @endif
   </div>
-  <div class="card-text">
-  <dl class=" list-inline">
-    <dt class="list-inline-item"><i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
-    <dd class="list-inline-item">{{$schematic->author->name}}</dd><br />
-    <dt class="list-inline-item"><i class="fa fa-eye" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
-    <dd class="list-inline-item">{{$schematic->views->count()}}</dd>
-    <dt class="list-inline-item"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
-    <dd class="list-inline-item">{{$schematic->likes->count()}}</dd>
-    <dt class="list-inline-item"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
-    <dd class="list-inline-item">{{$schematic->downloads->count()}}</dd>
-    <dt class="list-inline-item"><i class="fa fa-comments" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
-    <dd class="list-inline-item">{{$schematic->comments->count()}}</dd>
-  </dl>
+  <div class="card-body">
+      <strong>{{$schematic->title}}</strong>
+      <dl class=" list-inline">
+        <dt class="list-inline-item"><i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
+        <dd class="list-inline-item">{{$schematic->author->name}}</dd><br />
+        <dt class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="sr-only">Published</span></dt>
+        <dd class="list-inline-item">{{$schematic->updated_at->format('M d, Y  g:i A')}}</dd><br />
+        <dt class="list-inline-item"><i class="fa fa-eye" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
+        <dd class="list-inline-item">{{$schematic->views->count()}}</dd>
+        <dt class="list-inline-item"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
+        <dd class="list-inline-item">{{$schematic->likes->count()}}</dd>
+        <dt class="list-inline-item"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
+        <dd class="list-inline-item">{{$schematic->downloads->count()}}</dd>
+        <dt class="list-inline-item"><i class="fa fa-comments" aria-hidden="true"></i><span class="sr-only">Views</span></dt>
+        <dd class="list-inline-item">{{$schematic->comments->count()}}</dd>
+      </dl>
 </div>
+  </a>
 </div>

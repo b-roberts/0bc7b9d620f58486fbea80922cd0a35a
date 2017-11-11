@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-5">
     @if ($schematic->images->count())
-      <img class="card-img-top" src="{{asset('\images\schematics\\'.$schematic->images->first()->filename)}}" alt="{{$schematic->title}}">
+      <img class="card-img-top" src="{{asset('\images\\'.$schematic->images->first()->filename)}}" alt="{{$schematic->title}}">
     @endif
   </div>
     <div class="col-7">
