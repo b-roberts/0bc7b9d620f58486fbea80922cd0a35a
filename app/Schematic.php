@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Yaml\Yaml;
+use \Snipe\BanBuilder\CensorWords;
 
 class Schematic extends Model
 {
@@ -14,7 +15,16 @@ class Schematic extends Model
       $value = Yaml::parse($this->filedata);
       return json_encode($value);
     }
-
+    public function setDescriptionAttribute($value)
+    {
+      $wordCensor = new CensorWords;
+      $this->attributes['description'] = $wordCensor->censorString($value)['clean'];
+    }
+    public function setTitleAttribute($value)
+    {
+      $wordCensor = new CensorWords;
+      $this->attributes['title'] = $wordCensor->censorString($value)['clean'];
+    }
     public function comments()
   {
     return $this->hasMany('\App\Comment');

@@ -10,6 +10,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "snipe/banbuilder": "^2.2",
         "symfony/yaml": "^3.3"
     },
     "require-dev": {
