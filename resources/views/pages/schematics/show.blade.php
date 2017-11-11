@@ -1,46 +1,56 @@
 @extends('templates/bootstrap')
 @section('content')
 <div class="container">
-<h1>{{$schematic->title}}</h1>
-<div class="row">
-<div id="pixi-app"></div>
-</div>
-{{$schematic->description}}
-@foreach($schematic->comments as $comment)
-  <div class="col-sm-8">
-      <div class="panel panel-white post panel-shadow">
-          <div class="post-heading">
-              <div class="pull-left image">
-                  <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
-              </div>
-              <div class="pull-left meta">
-                  <div class="title h5">
-                      <a href="#"><b>{{$comment->author->name}}</b></a>
-                      made a post.
-                  </div>
-                  <h6 class="text-muted time">1 minute ago</h6>
-              </div>
+  <div class="row mt-3">
+    <div class="col-md-8">
+      @include('modules.slider')
+      <h1 class="h3 mt-3">{{$schematic->title}}</h1>
+      <div class="row">
+        <div class="col-6">
+          <span>{{$schematic->views->count()}}</span> Views
+        </div>
+        <div class="col-6">
+          <div class="btn-group pull-right" role="group" aria-label="Basic example">
+            <a href="{{route('schematic.download',['id'=>$schematic->id])}}" class="btn btn-link">
+              <i class="fa fa-download" aria-hidden="true"></i> {{$schematic->downloads->count()}}
+            </a>
+            <button type="button" class="btn btn-link" onclick="$.post('{{route('schematic.like',['id'=>$schematic->id])}}')">
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$schematic->likes->count()}}
+            </button>
+            <button type="button" class="btn btn-link"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
+            <button id="btnGroupDrop1" type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a class="dropdown-item" href="#">Report</a>
+            </div>
           </div>
-          <div class="post-description">
-              <p>{{$comment->message}}</p>
-              <div class="stats">
-                  <a href="#" class="btn btn-default stat-item">
-                      <i class="fa fa-thumbs-up icon"></i>2
-                  </a>
-                  <a href="#" class="btn btn-default stat-item">
-                      <i class="fa fa-thumbs-down icon"></i>12
-                  </a>
-              </div>
-          </div>
+        </div>
       </div>
-  </div>
-@endforeach
-</div>
-@endsection
-@push('scripts')
-  <script>
-var schematic = {!!$schematic->yaml!!};
-  </script>
-<script src="/js/schematic.js"></script>
+      <hr />
+      <a href="{{route('schematic.download',['id'=>$schematic->id])}}" class="btn btn-primary pull-right mt-3 ml-1">
+        <i class="fa fa-download" aria-hidden="true"></i> Download
+      </a>
+      @include('modules.comment',['comment'=>$schematic])
+      <br class="clear clearfix mb-3" style="clear:both;" />
+      <hr />
+      <h3>Comments</h3>
+      @foreach($schematic->comments as $comment)
+        @include('modules.comment',['comment'=>$comment])
+      @endforeach
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <img src="https://lh3.googleusercontent.com/LPDN4CF4FjV9AWD8MBqd4eUt35lntHNNkiETOkoJMdxtURb24PRo2hXgA_L-5IEfgMw=w300-h250" />
+        </div>
+      </div>
 
-@endpush
+      @foreach($suggestions as $suggestion)
+        <div class="mt-3">
+          @include('modules.schematic_card_sm',['schematic'=>$suggestion])
+        </div>
+      @endforeach
+    </div>
+  </div>
+@endsection

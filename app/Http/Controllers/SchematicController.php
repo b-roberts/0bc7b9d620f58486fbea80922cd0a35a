@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 class SchematicController extends Controller
 {
   public function __construct()
@@ -55,9 +55,59 @@ class SchematicController extends Controller
     {
         //
         $schematic = \App\Schematic::find($id);
-        return view('pages.schematics.show',['schematic'=>$schematic]);
+
+        $view = new \App\View;
+        if (Auth::check())
+        {
+          $view->user_id =  Auth::id();
+        }
+        $view->schematic_id=$id;
+        $view->save();
+
+        $suggestions = \App\Schematic::with('author')->take(10)->get();
+        return view('pages.schematics.show',['schematic'=>$schematic,'suggestions'=>$suggestions]);
     }
 
+    public function download($id)
+    {
+      //
+      $schematic = \App\Schematic::find($id);
+
+      $download = new \App\Download;
+      if (Auth::check())
+      {
+        $download->user_id =  Auth::id();
+      }
+      $download->schematic_id=$id;
+      $download->save();
+
+      // create a stream, and send the file
+      return \Response::stream(function () use ($schematic) {
+          // grab the raw file and echo it out
+          echo $schematic->filedata;
+      }, 200, [
+          // other headers could be added
+          'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+          'Content-Description' => 'File Download of '.$schematic->title,
+          'Content-Disposition' => 'attachment; filename=' .$schematic->title . '.yml',
+          'Expires' => '0',
+          'Pragma' => 'public'
+      ]);
+    }
+    public function like($id)
+    {
+        //
+        $schematic = \App\Schematic::find($id);
+
+        $like = new \App\Like;
+        if (Auth::check())
+        {
+          $like->user_id =  Auth::id();
+        }
+        $like->schematic_id=$id;
+        $like->save();
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
