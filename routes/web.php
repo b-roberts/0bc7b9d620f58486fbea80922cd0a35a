@@ -16,6 +16,7 @@ Route::resource('schematic', 'SchematicController');
 Route::get('/schematic/{id}/download', 'SchematicController@download')->name('schematic.download');
 Route::post('/schematic/{id}/like', 'SchematicController@like')->name('schematic.like');
 
+Route::resource('comment', 'CommentController');
 Auth::routes();
 
 

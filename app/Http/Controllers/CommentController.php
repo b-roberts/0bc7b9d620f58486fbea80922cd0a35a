@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +28,7 @@ class CommentController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -35,6 +40,11 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+        $comment = new \App\Comment;
+        $comment->fill($request->all());
+        $comment->user_id = \Auth::id();
+        $comment->save();
+        return back();
     }
 
     /**

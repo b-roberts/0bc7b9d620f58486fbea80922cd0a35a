@@ -35,6 +35,18 @@
       <br class="clear clearfix mb-3" style="clear:both;" />
       <hr />
       <h3>Comments</h3>
+      {!! Form::open(['route'=>'comment.store', 'files' => true]) !!}
+        <input type="hidden" name="schematic_id" value="{{$schematic->id}}" />
+        <div class="form-group">
+          <label for="ipt-comment sr-only sr-only-focusable">Comment</label>
+          {!! Form::textarea('description', '',[
+            'class'=>'form-control',
+            'id'=>'ipt-comment',
+            'placeholder'=>'Post a public comment...',
+            'rows'=>'1']) !!}
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        {!! Form::close() !!}
       @foreach($schematic->comments as $comment)
         @include('modules.comment',['comment'=>$comment])
       @endforeach
