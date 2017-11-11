@@ -43,6 +43,19 @@ class SchematicController extends Controller
     public function store(Request $request)
     {
         //
+        $schematic = new \App\Schematic;
+        $schematic->fill($request->all());
+        $schematic->user_id = Auth::id();
+        $schematic->filedata = $request->file('schematic');
+        $schematic->save();
+
+        $primaryImage = $request->file('image')->store('schematics');
+        $image = new \App\Image;
+        $image->schematic_id = $schematic->id;
+        $image->user_id = Auth::id();
+        $image->filename = $primaryImage;
+        $image->save();
+
     }
 
     /**

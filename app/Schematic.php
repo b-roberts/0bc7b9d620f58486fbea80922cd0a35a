@@ -8,7 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 class Schematic extends Model
 {
     //
-
+    protected $fillable=['title','description','category_id'];
     public function getYamlAttribute()
     {
       $value = Yaml::parse($this->filedata);
