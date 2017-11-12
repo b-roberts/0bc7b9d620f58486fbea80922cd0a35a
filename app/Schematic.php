@@ -49,4 +49,11 @@ public function images()
 {
 return $this->hasMany('\App\Image');
 }
+/**
+ * Get all of the Schematic's Abuse Reports.
+ */
+public function abuseReports()
+{
+    return $this->morphMany('App\AbuseReport', 'reportable');
+}
 }

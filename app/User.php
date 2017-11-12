@@ -47,4 +47,11 @@ public function socialMedias()
 {
     return $this->belongsToMany('App\SocialMedia')->withPivot('handle');
 }
+/**
+ * Get all of the User's Abuse Reports.
+ */
+public function abuseReports()
+{
+    return $this->morphMany('App\AbuseReport', 'reportable');
+}
 }

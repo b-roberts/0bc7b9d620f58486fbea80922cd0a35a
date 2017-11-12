@@ -21,5 +21,6 @@ Auth::routes();
 
 
 Route::resource('profile', 'ProfileController');
+Route::resource('abuse-report', 'AbuseReportController');
 
 Route::get('/', 'HomeController@index')->name('home');

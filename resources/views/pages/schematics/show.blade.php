@@ -25,7 +25,7 @@
               <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <a class="dropdown-item" href="#">Report</a>
+              <a class="dropdown-item" href="#" onclick="openAbuseReport('schematic',{{$schematic->id}})">Report</a>
             </div>
           </div>
         </div>
@@ -34,7 +34,24 @@
       <a href="{{route('schematic.download',['id'=>$schematic->id])}}" class="btn btn-primary pull-right mt-3 ml-1">
         <i class="fa fa-download" aria-hidden="true"></i> Download
       </a>
-      @include('modules.comment',['comment'=>$schematic])
+      <div class="media">
+        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar mr-3" alt="user profile image">
+        <div class="media-body">
+          <div class="title h5">
+            <a href="#"><b>{{$schematic->author->name}}</b></a>
+            <small>
+              {{$schematic->created_at->format('M d, Y  g:i A')}}
+            </small>
+          </div>
+
+          @if ($schematic->created_at != $schematic->updated_at)
+            <span class="text-muted">Modified {{$schematic->updated_at->format('M d, Y  g:i A')}}</span>
+          @endif
+          <div class="post-description">
+            <p>{{$schematic->description}}</p>
+          </div>
+        </div>
+      </div>
       <br class="clear clearfix mb-3" style="clear:both;" />
       <hr />
       <h3>Comments</h3>

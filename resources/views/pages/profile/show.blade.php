@@ -23,7 +23,7 @@
       <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">About</a>
       <a class="nav-link " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Report User</a>
+        <a class="dropdown-item" href="#" onclick="openAbuseReport('user',{{$user->id}})">Report User</a>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">

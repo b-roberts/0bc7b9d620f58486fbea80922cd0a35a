@@ -70,6 +70,7 @@
 </nav>
 
 @yield('content')
+@include('modules.abuse_report')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.5/pixi.min.js"></script>
 
 <script

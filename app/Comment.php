@@ -19,4 +19,11 @@ class Comment extends Model
       $wordCensor = new CensorWords;
       $this->attributes['description'] = $wordCensor->censorString($value)['clean'];
     }
+    /**
+     * Get all of the Comment's Abuse Reports.
+     */
+    public function abuseReports()
+    {
+        return $this->morphMany('App\AbuseReport', 'reportable');
+    }
 }
