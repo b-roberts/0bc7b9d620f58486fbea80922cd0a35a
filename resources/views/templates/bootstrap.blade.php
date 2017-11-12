@@ -97,12 +97,7 @@ $(document).ready(function()
 });
 });
 </script>
-<script>
-  (function() {
-    Galleria.loadTheme('{{url('galleria/themes/classic/galleria.classic.min.js')}}');
-    Galleria.run('.galleria');
-  }());
-</script>
+
    @stack('scripts')
 </body>
 </html>

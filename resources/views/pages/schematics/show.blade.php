@@ -1,7 +1,5 @@
 @extends('templates/bootstrap')
-@push('scripts')
-  <script src="/oni-schematics/public/galleria/galleria-1.5.7.js"></script>
-@endpush
+
 @section('content')
 <div class="container">
   <div class="row mt-3">
