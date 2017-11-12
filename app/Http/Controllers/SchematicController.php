@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Symfony\Component\Yaml\Yaml;
 use Auth;
 class SchematicController extends Controller
 {
@@ -42,11 +43,12 @@ class SchematicController extends Controller
      */
     public function store(Request $request)
     {
+      $yaml = Yaml::parse(file_get_contents($request->file('schematic')));
         //
         $schematic = new \App\Schematic;
         $schematic->fill($request->all());
         $schematic->user_id = Auth::id();
-        $schematic->filedata = $request->file('schematic');
+        $schematic->filedata = Yaml::dump($yaml);
         $schematic->save();
 
         $primaryImage = $request->file('image')->store('schematics');
@@ -77,8 +79,14 @@ class SchematicController extends Controller
         $view->schematic_id=$id;
         $view->save();
 
+        $temperature = collect($schematic->yaml['cells'])->average('temperature');
+
+
         $suggestions = \App\Schematic::with('author')->take(10)->get();
-        return view('pages.schematics.show',['schematic'=>$schematic,'suggestions'=>$suggestions]);
+        return view('pages.schematics.show',[
+          'schematic'=>$schematic,
+          'suggestions'=>$suggestions,
+          'temperature'=>$temperature]);
     }
 
     public function download($id)

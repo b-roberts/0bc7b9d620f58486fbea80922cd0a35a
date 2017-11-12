@@ -1,4 +1,7 @@
 @extends('templates/bootstrap')
+@push('scripts')
+  <script src="/oni-schematics/public/galleria/galleria-1.5.7.js"></script>
+@endpush
 @section('content')
 <div class="container">
   <div class="row mt-3">
@@ -38,7 +41,7 @@
       {!! Form::open(['route'=>'comment.store', 'files' => true]) !!}
         <input type="hidden" name="schematic_id" value="{{$schematic->id}}" />
         <div class="form-group">
-          <label for="ipt-comment sr-only sr-only-focusable">Comment</label>
+          <label for="ipt-comment" class=" sr-only sr-only-focusable">Comment</label>
           {!! Form::textarea('description', '',[
             'class'=>'form-control',
             'id'=>'ipt-comment',
@@ -57,7 +60,19 @@
           <img src="https://lh3.googleusercontent.com/LPDN4CF4FjV9AWD8MBqd4eUt35lntHNNkiETOkoJMdxtURb24PRo2hXgA_L-5IEfgMw=w300-h250" />
         </div>
       </div>
+      {{dump($schematic->yaml)}}
+      <div class="card">
+        <div class="card-body">
+  <h4 class="card-title">Schematic Stats</h4>
 
+<dl  class="card-text">
+  <dt>Size</dt>
+  <dd>{{$schematic->yaml['info']['size']['X']}} by {{$schematic->yaml['info']['size']['Y']}}</dd>
+  <dt>Average Temperature</dt>
+  <dd>{{round($temperature,1)}}&deg;K / {{round($temperature-273.15,1)}}&deg;C / {{round($temperature*1.8-459.67,1)}}&deg;F</dd>
+</dl>
+</div>
+      </div>
       @foreach($suggestions as $suggestion)
         <div class="mt-3">
           @include('modules.schematic_card_sm',['schematic'=>$suggestion])

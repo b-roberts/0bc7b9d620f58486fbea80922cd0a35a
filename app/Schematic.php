@@ -13,7 +13,7 @@ class Schematic extends Model
     public function getYamlAttribute()
     {
       $value = Yaml::parse($this->filedata);
-      return json_encode($value);
+      return $value;
     }
     public function setDescriptionAttribute($value)
     {
