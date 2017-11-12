@@ -13,6 +13,10 @@ class Comment extends Model
     {
     return $this->belongsTo('\App\User','user_id');
     }
+    public function schematic()
+    {
+    return $this->belongsTo('\App\Schematic','schematic_id');
+    }
 
     public function setDescriptionAttribute($value)
     {

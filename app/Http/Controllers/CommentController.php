@@ -44,6 +44,10 @@ class CommentController extends Controller
         $comment->fill($request->all());
         $comment->user_id = \Auth::id();
         $comment->save();
+        if ($comment->schematic->author->id != \Auth::id())
+        {
+          $comment->schematic->author->notify(new \App\Notifications\CommentCreated($comment));
+        }
         return back();
     }
 
