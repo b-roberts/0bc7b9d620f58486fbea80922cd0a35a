@@ -31,4 +31,20 @@ class User extends Authenticatable
 {
   return $this->hasMany('App\\Schematic');
 }
+public function likes()
+{
+    return $this->hasManyThrough('App\Like', 'App\Schematic');
+}
+public function views()
+{
+    return $this->hasManyThrough('App\View', 'App\Schematic');
+}
+public function downloads()
+{
+    return $this->hasManyThrough('App\Download', 'App\Schematic');
+}
+public function socialMedias()
+{
+    return $this->belongsToMany('App\SocialMedia')->withPivot('handle');
+}
 }

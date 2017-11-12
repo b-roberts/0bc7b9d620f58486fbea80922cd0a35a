@@ -20,4 +20,6 @@ Route::resource('comment', 'CommentController');
 Auth::routes();
 
 
+Route::resource('profile', 'ProfileController');
+
 Route::get('/', 'HomeController@index')->name('home');

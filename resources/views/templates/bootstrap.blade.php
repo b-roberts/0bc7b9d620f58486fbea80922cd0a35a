@@ -36,11 +36,39 @@
   <div class="navbar navbar-dark bg-dark">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand">{{env('APP_TITLE')}}</a>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
   </div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container d-flex justify-content-between">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{route('schematic.index')}}">Schematics</a>
+	      </li>
+				<li class="nav-item">
+	        <a class="nav-link" href="{{route('schematic.create')}}">Publish a Schematic</a>
+	      </li>
+
+	    </ul>
+			@include('modules.menu.user_menu')
+	  </div>
+	</div>
+</nav>
+
 @yield('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.5/pixi.min.js"></script>
 
@@ -56,7 +84,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="{{url('/js/jssor.slider.min.js')}}"></script>
-<script src="/oni-schematics/public/galleria/galleria-1.5.7.js"></script>
+
 
 <script>
 $(document).ready(function()
