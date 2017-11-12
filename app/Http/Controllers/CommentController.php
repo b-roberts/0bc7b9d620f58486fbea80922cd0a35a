@@ -79,6 +79,11 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $comment = \App\Comment::findOrFail($id);
+        $comment->fill($request->all());
+        $comment->user_id = \Auth::id();
+        $comment->save();
+        return back();
     }
 
     /**
