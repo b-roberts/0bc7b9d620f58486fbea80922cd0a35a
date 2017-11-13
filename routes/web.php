@@ -23,6 +23,8 @@ Auth::routes();
 Route::resource('profile', 'ProfileController');
 Route::resource('abuse-report', 'AbuseReportController');
 
+Route::resource('category', 'CategoryController');
+
 Route::post('/ajax/clear-notifications', 'NotificationController@clear')->name('notifications.clear');
 
 Route::get('/', 'HomeController@index')->name('home');

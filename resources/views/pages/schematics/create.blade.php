@@ -15,7 +15,7 @@
   </div>
   <div class="form-group">
     <label for="ipt-category">Category</label>
-      {!!Form::select('category_id', ['1' => 'Large', '2' => 'Small'],'',['class'=>'form-control','id'=>'ipt-category'])!!}
+      {!!Form::select('category_id', $categories->mapWithKeys(function($category){ return [$category->id=>$category->title];}),'',['class'=>'form-control','id'=>'ipt-category'])!!}
 
   </div>
   <div class="row">

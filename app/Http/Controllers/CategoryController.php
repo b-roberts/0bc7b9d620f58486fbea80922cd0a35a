@@ -14,6 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $categories = \App\Category::orderBy('title')->get();
+        return view('pages.categories.index',['categories'=>$categories]);
     }
 
     /**
@@ -46,6 +48,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        $category = \App\Category::findOrFail($id);
+        $schematics = \App\Schematic::with('author')->where('category_id',$id)->paginate(24);;
+
+        return view('pages.categories.show',['category'=>$category,'schematics'=>$schematics]);
     }
 
     /**

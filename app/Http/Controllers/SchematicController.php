@@ -32,7 +32,8 @@ class SchematicController extends Controller
     public function create()
     {
         //
-        return view('pages.schematics.create');
+        $categories = \App\Category::get();
+        return view('pages.schematics.create',['categories'=>$categories]);
     }
 
     /**

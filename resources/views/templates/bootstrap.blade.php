@@ -74,7 +74,7 @@
 	        <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{{route('schematic.index')}}">Schematics</a>
+	        <a class="nav-link" href="{{route('category.index')}}">Schematics</a>
 	      </li>
 				<li class="nav-item">
 	        <a class="nav-link" href="{{route('schematic.create')}}">Publish a Schematic</a>
