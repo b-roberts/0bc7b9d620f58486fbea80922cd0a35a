@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $mostRecent = \App\Schematic::with('author')->latest()->take(4)->get();
+      $mostLiked = \App\Schematic::with('author')->withCount('likes')
+        ->orderBy('likes_count', 'desc')->take(4)->get();
+      $mostDownloaded =  \App\Schematic::with('author')->withCount('downloads')
+        ->orderBy('downloads_count', 'desc')->take(4)->get();
+      return view('welcome',[
+        'mostRecent'=>$mostRecent,
+        'mostLiked'=>$mostLiked,
+        'mostDownloaded'=>$mostDownloaded]);
     }
 }

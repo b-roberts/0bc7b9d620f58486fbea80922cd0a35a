@@ -6,6 +6,23 @@
 <link rel="stylesheet" href="{{url('/css/oni.css')}}"  />
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<link href="https://fonts.googleapis.com/css?family=Quantico|Lato" rel="stylesheet">
+<style>
+*{
+	font-family: Lato;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Quantico';
+	text-transform: uppercase;
+	letter-spacing: -3px;
+	font-weight: bold;
+	}
+	.navbar-brand {
+		font-family: 'Quantico';
+		text-transform: uppercase;
+		letter-spacing: -1px;
+	}
+</style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
