@@ -1,9 +1,6 @@
 @php
 $abuseReportCategories=\App\AbuseReportCategory::all();
 @endphp
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abuseReportModal">
-  Launch demo modal
-</button>
 
 <div class="modal fade" id="abuseReportModal" tabindex="-1" role="dialog" aria-labelledby="abuseReportModalLabel" aria-hidden="true">
   {!! Form::open(['route'=>'abuse-report.store', 'files' => true]) !!}
